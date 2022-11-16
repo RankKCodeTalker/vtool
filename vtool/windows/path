@@ -1,0 +1,34 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# @Time    : 2022-11-16 10:40
+# @Author  : Vichayturen
+# @email   : 1073931273@qq.com
+# @Description
+#          :
+
+import re
+
+def modify_str(dir_name : str):
+    hasLeft = False
+    dir_name = re.sub("/\\\*\|", "_", dir_name)
+    for i in len(dir_name):
+        if dir_name[i]=="[":
+            dir_name[i] = "【"
+        elif dir_name[i]=="]":
+            dir_name[i] = "】"
+        elif dir_name[i]=="<":
+            dir_name[i] = "《"
+        elif dir_name[i]==">":
+            dir_name[i] = "》"
+        elif dir_name[i]=="?":
+            dir_name[i] = "？"
+        elif dir_name[i]==":":
+            dir_name[i] = "："
+        elif dir_name[i]=="\"":
+            if not hasLeft:
+                dir_name[i] = "”"
+                hasLeft = False
+            else:
+                dir_name[i] = "“"
+                hasLeft = True
+    return dir_name
